@@ -39,7 +39,7 @@ const popularByCategory: Record<string, PopularItem[]> = {
     { href: '/produkt/kolczyki-pozlacane-grecki-wzor', label: 'Grecki wzór', price: '99,00 zł', image: '/images/products/featured/3-grecki-wzor.webp' },
     { href: '/produkt/srebrny-pierscionek-925-lisc-r17', label: 'Pierścionek liść ażurowy', price: '119,00 zł', image: '/images/products/new/2-pierscionek-lisc.webp' },
   ],
-  '/kategoria/komplety-srebrne': [
+  '/kategoria/komplety': [
     { href: '/produkt/srebrne-kolczyki-pozlacane-polokragle', label: 'Komplet półokrągły z cyrkoniami', price: '109,00 zł', image: '/images/products/bestsellers/5-polokragle-cyrkonie.webp' },
     { href: '/produkt/kolczyki-serce-czarne-cyrkonie', label: 'Komplet serce czarne cyrkonie', price: '99,00 zł', image: '/images/products/featured/1-serce-czarne-cyrkonie.webp' },
     { href: '/produkt/srebrne-kolczyki-925-skrzydla-aniola', label: 'Komplet Skrzydła Anioła', price: '169,00 zł', image: '/images/products/new/1-skrzydla-aniola.webp' },

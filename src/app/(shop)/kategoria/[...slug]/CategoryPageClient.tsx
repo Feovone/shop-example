@@ -11,6 +11,13 @@ import { mockNewProducts, mockBestsellers } from '@/lib/mock-data';
 import { mockFilterGroups } from '@/lib/mock-filters';
 import type { ActiveFilters } from '@/types';
 
+function prettify(segment: string): string {
+  return segment
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
+
 interface CategoryPageClientProps {
   slug: string;
   searchParams: { [key: string]: string | string[] | undefined };
@@ -21,11 +28,21 @@ export function CategoryPageClient({ slug, searchParams }: CategoryPageClientPro
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({});
   const [sort, setSort] = useState('default');
 
+  const segments = slug.split('/');
+
+  const breadcrumbItems = segments.map((seg, i) => {
+    const path = '/kategoria/' + segments.slice(0, i + 1).join('/');
+    const isLast = i === segments.length - 1;
+    return { label: prettify(seg), href: isLast ? undefined : path };
+  });
+
+  const firstSegment = prettify(segments[0]);
+  const lastSegment = prettify(segments[segments.length - 1]);
+  const categoryName = segments.length > 1 && firstSegment !== lastSegment
+    ? `${firstSegment} ${lastSegment}`
+    : firstSegment;
+
   const page = Number(searchParams.page) || 1;
-  const categoryName = slug
-    .split('-')
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
 
   const handleFilterChange = (attrSlug: string, valSlug: string) => {
     setActiveFilters((prev) => {
@@ -47,7 +64,7 @@ export function CategoryPageClient({ slug, searchParams }: CategoryPageClientPro
 
   return (
     <div className="mx-auto max-w-7xl px-4 pb-12">
-      <Breadcrumbs items={[{ label: categoryName }]} />
+      <Breadcrumbs items={breadcrumbItems} />
 
       <h1 className="text-2xl md:text-3xl font-serif font-bold mb-6">{categoryName}</h1>
 
