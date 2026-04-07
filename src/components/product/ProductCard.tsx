@@ -18,7 +18,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const mainImage = product.images.find((img) => img.isMain) ?? product.images[0];
 
   return (
-    <div className="group relative">
+    <div className="group relative flex flex-col h-full">
       <Link href={`/produkt/${product.slug}`} className="block">
         <div className="relative aspect-square overflow-hidden bg-bg-secondary">
           {mainImage && (
@@ -38,7 +38,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         </div>
 
-        <div className="mt-3 space-y-1">
+        <div className="mt-3 space-y-1 flex-1">
           <p className="text-xs text-text-muted uppercase tracking-wide">Susetti</p>
           <h3 className="text-sm font-medium leading-tight line-clamp-2 group-hover:text-gold transition-colors">
             {product.name}
@@ -52,7 +52,7 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
       </Link>
 
-      <div className="mt-2">
+      <div className="mt-auto pt-2">
         {product.isAvailable ? (
           <Button
             variant="outline"
