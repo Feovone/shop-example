@@ -124,72 +124,7 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
             </div>
           </div>
 
-          <div className="mt-4 space-y-2 text-sm">
-            <p>
-              <span className="text-text-muted">Dostępność:</span>{' '}
-              <span className={product.isAvailable ? 'text-success font-medium' : 'text-error font-medium'}>
-                {product.isAvailable ? `${product.stockQuantity} szt.` : 'Brak'}
-              </span>
-            </p>
-            <p>
-              <span className="text-text-muted">Wysyłka w:</span>{' '}
-              <span className="font-medium">{product.shippingTime}</span>
-            </p>
-          </div>
-
-          {product.isAvailable ? (
-            <div className="mt-6 flex items-center gap-3">
-              <div className="flex items-center border border-border rounded-sm">
-                <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-10 h-10 flex items-center justify-center hover:bg-bg-secondary transition-colors"
-                >
-                  <Minus className="w-4 h-4" />
-                </button>
-                <input
-                  type="number"
-                  min={1}
-                  max={product.stockQuantity}
-                  value={quantity}
-                  onChange={(e) => setQuantity(Math.max(1, Math.min(product.stockQuantity, Number(e.target.value) || 1)))}
-                  className="w-12 h-10 text-center text-sm border-x border-border focus:outline-none"
-                />
-                <button
-                  onClick={() => setQuantity(Math.min(product.stockQuantity, quantity + 1))}
-                  className="w-10 h-10 flex items-center justify-center hover:bg-bg-secondary transition-colors"
-                >
-                  <Plus className="w-4 h-4" />
-                </button>
-              </div>
-              <Button
-                size="lg"
-                className="flex-1 gap-2"
-                onClick={() => addItem(product, quantity)}
-              >
-                <ShoppingCart className="w-5 h-5" />
-                Do koszyka
-              </Button>
-            </div>
-          ) : (
-            <div className="mt-6">
-              <Button variant="secondary" size="lg" className="w-full gap-2">
-                <Bell className="w-5 h-5" />
-                Powiadom o dostępności
-              </Button>
-            </div>
-          )}
-
-          <div className="mt-4 flex items-center gap-4">
-            <button className="flex items-center gap-1.5 text-sm text-text-light hover:text-gold transition-colors">
-              <Heart className="w-4 h-4" /> Dodaj do ulubionych
-            </button>
-            <button className="flex items-center gap-1.5 text-sm text-text-light hover:text-gold transition-colors">
-              <Share2 className="w-4 h-4" /> Poleć znajomemu
-            </button>
-          </div>
-
-          <div className="mt-6 border-t border-border pt-6 space-y-4">
-            <h2 className="font-semibold">Warianty</h2>
+          <div className="mt-6 space-y-4">
             {mockVariants.map((variant) => (
               <div key={variant.name}>
                 <p className="text-sm text-text-muted mb-2">
@@ -215,6 +150,70 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="mt-4 space-y-2 text-sm">
+            <p>
+              <span className="text-text-muted">Dostępność:</span>{' '}
+              <span className={product.isAvailable ? 'text-success font-medium' : 'text-error font-medium'}>
+                {product.isAvailable ? `${product.stockQuantity} szt.` : 'Brak'}
+              </span>
+            </p>
+            <p>
+              <span className="text-text-muted">Wysyłka w:</span>{' '}
+              <span className="font-medium">{product.shippingTime}</span>
+            </p>
+          </div>
+
+          {product.isAvailable ? (
+            <div className="mt-6 flex items-stretch gap-3">
+              <div className="flex items-center border border-border rounded-sm">
+                <button
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="w-10 h-12 flex items-center justify-center hover:bg-bg-secondary transition-colors"
+                >
+                  <Minus className="w-4 h-4" />
+                </button>
+                <input
+                  type="number"
+                  min={1}
+                  max={product.stockQuantity}
+                  value={quantity}
+                  onChange={(e) => setQuantity(Math.max(1, Math.min(product.stockQuantity, Number(e.target.value) || 1)))}
+                  className="w-12 h-12 text-center text-sm border-x border-border focus:outline-none"
+                />
+                <button
+                  onClick={() => setQuantity(Math.min(product.stockQuantity, quantity + 1))}
+                  className="w-10 h-12 flex items-center justify-center hover:bg-bg-secondary transition-colors"
+                >
+                  <Plus className="w-4 h-4" />
+                </button>
+              </div>
+              <Button
+                size="lg"
+                className="flex-1 gap-2 h-12"
+                onClick={() => addItem(product, quantity)}
+              >
+                <ShoppingCart className="w-5 h-5" />
+                Do koszyka
+              </Button>
+            </div>
+          ) : (
+            <div className="mt-6">
+              <Button variant="secondary" size="lg" className="w-full gap-2 h-12">
+                <Bell className="w-5 h-5" />
+                Powiadom o dostępności
+              </Button>
+            </div>
+          )}
+
+          <div className="mt-4 flex items-center gap-4">
+            <button className="flex items-center gap-1.5 text-sm text-text-light hover:text-gold transition-colors">
+              <Heart className="w-4 h-4" /> Dodaj do ulubionych
+            </button>
+            <button className="flex items-center gap-1.5 text-sm text-text-light hover:text-gold transition-colors">
+              <Share2 className="w-4 h-4" /> Poleć znajomemu
+            </button>
           </div>
 
           {product.description && (

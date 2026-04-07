@@ -28,7 +28,7 @@ export function HeroBanner() {
               <Button size="lg">Zobacz Motywy</Button>
             </Link>
             <Link href="/kategoria/bizuteria-srebrna">
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/20 hover:text-white">
                 Biżuteria Srebrna
               </Button>
             </Link>

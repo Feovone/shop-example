@@ -93,9 +93,10 @@ export function CategoryPageClient({ slug, searchParams }: CategoryPageClientPro
           </div>
 
           <ProductGrid products={products} />
-          <Pagination currentPage={page} totalPages={totalPages} baseUrl={`/kategoria/${slug}`} />
         </div>
       </div>
+
+      <Pagination currentPage={page} totalPages={totalPages} baseUrl={`/kategoria/${slug}`} />
 
       {mobileFiltersOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
