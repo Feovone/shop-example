@@ -1,6 +1,7 @@
 import type { Product, ProductImage, ProductAttributeValue, Review, Category, Collection, Article } from '@/types';
+import { asset } from '@/lib/utils';
 
-const imgF = (id: string, url: string, alt: string, position: number, isMain = false): ProductImage => ({ id, url, alt, position, isMain });
+const imgF = (id: string, url: string, alt: string, position: number, isMain = false): ProductImage => ({ id, url: asset(url), alt, position, isMain });
 
 const attrVal = (attrName: string, attrSlug: string, val: string, valSlug: string): ProductAttributeValue => ({
   attribute: { id: attrSlug, name: attrName, slug: attrSlug, type: 'SELECT', isFilterable: true, position: 0 },
@@ -103,20 +104,20 @@ export const mockFeaturedProducts: Product[] = [
 export const mockAllProducts = [...mockNewProducts, ...mockBestsellers, ...mockFeaturedProducts];
 
 export const mockCategories: Category[] = [
-  { id: '1', name: 'Biżuteria Złota', slug: 'bizuteria-zlota', description: null, parentId: null, parent: null, children: [], image: '/images/categories/gold.jpg', position: 0, productCount: 350, metaTitle: null, metaDescription: null },
-  { id: '2', name: 'Biżuteria Srebrna', slug: 'bizuteria-srebrna', description: null, parentId: null, parent: null, children: [], image: '/images/categories/silver.jpg', position: 1, productCount: 2500, metaTitle: null, metaDescription: null },
-  { id: '3', name: 'Motywy', slug: 'motywy', description: null, parentId: null, parent: null, children: [], image: '/images/categories/motifs.jpg', position: 2, productCount: 800, metaTitle: null, metaDescription: null },
-  { id: '4', name: 'Dewocjonalia', slug: 'dewocjonalia', description: null, parentId: null, parent: null, children: [], image: '/images/categories/devotional.jpg', position: 3, productCount: 200, metaTitle: null, metaDescription: null },
+  { id: '1', name: 'Biżuteria Złota', slug: 'bizuteria-zlota', description: null, parentId: null, parent: null, children: [], image: asset('/images/categories/gold.jpg'), position: 0, productCount: 350, metaTitle: null, metaDescription: null },
+  { id: '2', name: 'Biżuteria Srebrna', slug: 'bizuteria-srebrna', description: null, parentId: null, parent: null, children: [], image: asset('/images/categories/silver.jpg'), position: 1, productCount: 2500, metaTitle: null, metaDescription: null },
+  { id: '3', name: 'Motywy', slug: 'motywy', description: null, parentId: null, parent: null, children: [], image: asset('/images/categories/motifs.jpg'), position: 2, productCount: 800, metaTitle: null, metaDescription: null },
+  { id: '4', name: 'Dewocjonalia', slug: 'dewocjonalia', description: null, parentId: null, parent: null, children: [], image: asset('/images/categories/devotional.jpg'), position: 3, productCount: 200, metaTitle: null, metaDescription: null },
 ];
 
 export const mockCollections: Collection[] = [
-  { id: '1', name: 'Eleganckie Odbicie', slug: 'eleganckie-odbicie', description: 'Kolekcja gładkiej, lustrzanej biżuterii srebrnej', image: '/images/collections/eleganckie-odbicie.webp', position: 0, metaTitle: null, metaDescription: null },
-  { id: '2', name: 'Mroczny Blask', slug: 'mroczny-blask', description: 'Kolekcja biżuterii oksydowanej', image: '/images/collections/eleganckie-odbicie-2.webp', position: 1, metaTitle: null, metaDescription: null },
-  { id: '3', name: 'Czerwona Aura', slug: 'czerwona-aura', description: 'Kolekcja biżuterii z czerwonymi kamieniami', image: '/images/collections/eleganckie-odbicie-3.jpg', position: 2, metaTitle: null, metaDescription: null },
+  { id: '1', name: 'Eleganckie Odbicie', slug: 'eleganckie-odbicie', description: 'Kolekcja gładkiej, lustrzanej biżuterii srebrnej', image: asset('/images/collections/eleganckie-odbicie.webp'), position: 0, metaTitle: null, metaDescription: null },
+  { id: '2', name: 'Mroczny Blask', slug: 'mroczny-blask', description: 'Kolekcja biżuterii oksydowanej', image: asset('/images/collections/eleganckie-odbicie-2.webp'), position: 1, metaTitle: null, metaDescription: null },
+  { id: '3', name: 'Czerwona Aura', slug: 'czerwona-aura', description: 'Kolekcja biżuterii z czerwonymi kamieniami', image: asset('/images/collections/eleganckie-odbicie-3.jpg'), position: 2, metaTitle: null, metaDescription: null },
 ];
 
 export const mockArticles: Article[] = [
-  { id: '1', title: 'Jak dobrać rozmiar pierścionka?', slug: 'jak-dobrac-rozmiar-pierscionka', content: '', excerpt: 'Poradnik jak prawidłowo zmierzyć palec i dobrać odpowiedni rozmiar pierścionka.', image: '/images/blog/rozmiar-pierscionka.jpg', author: 'Susetti', publishedAt: '2026-02-20', metaTitle: null, metaDescription: null },
-  { id: '2', title: 'Oksydowana biżuteria srebrna 925', slug: 'mroczny-blask-oksydowana-bizuteria-srebro-925', content: '', excerpt: 'Wszystko co musisz wiedzieć o oksydowanej biżuterii ze srebra próby 925.', image: '/images/blog/oksydowana-bizuteria.jpg', author: 'Susetti', publishedAt: '2026-02-20', metaTitle: null, metaDescription: null },
-  { id: '3', title: 'Rodzaje zapięcia kolczyków!', slug: 'rodzaje-zapiecia-kolczykow', content: '', excerpt: 'Poznaj różne rodzaje zapięć kolczyków i dowiedz się, który będzie najlepszy dla Ciebie.', image: '/images/blog/rodzaje-zapiecia.jpg', author: 'Susetti', publishedAt: '2024-04-01', metaTitle: null, metaDescription: null },
+  { id: '1', title: 'Jak dobrać rozmiar pierścionka?', slug: 'jak-dobrac-rozmiar-pierscionka', content: '', excerpt: 'Poradnik jak prawidłowo zmierzyć palec i dobrać odpowiedni rozmiar pierścionka.', image: asset('/images/blog/rozmiar-pierscionka.jpg'), author: 'Susetti', publishedAt: '2026-02-20', metaTitle: null, metaDescription: null },
+  { id: '2', title: 'Oksydowana biżuteria srebrna 925', slug: 'mroczny-blask-oksydowana-bizuteria-srebro-925', content: '', excerpt: 'Wszystko co musisz wiedzieć o oksydowanej biżuterii ze srebra próby 925.', image: asset('/images/blog/oksydowana-bizuteria.jpg'), author: 'Susetti', publishedAt: '2026-02-20', metaTitle: null, metaDescription: null },
+  { id: '3', title: 'Rodzaje zapięcia kolczyków!', slug: 'rodzaje-zapiecia-kolczykow', content: '', excerpt: 'Poznaj różne rodzaje zapięć kolczyków i dowiedz się, który będzie najlepszy dla Ciebie.', image: asset('/images/blog/rodzaje-zapiecia.jpg'), author: 'Susetti', publishedAt: '2024-04-01', metaTitle: null, metaDescription: null },
 ];

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { COMPANY, SITE_NAME } from '@/config/constants';
 import { footerNavigation } from '@/config/navigation';
+import { asset } from '@/lib/utils';
 import { NewsletterForm } from './NewsletterForm';
 
 function FacebookIcon({ className }: { className?: string }) {
@@ -73,7 +74,7 @@ export function Footer() {
         <div className="py-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <Image src="/images/logo-white.svg" alt={SITE_NAME} width={140} height={36} className="mb-2" />
+              <Image src={asset('/images/logo-white.svg')} alt={SITE_NAME} width={140} height={36} className="mb-2" />
               <p className="text-xs text-white/40">{COMPANY.name}</p>
               <div className="flex items-center gap-4 mt-2 text-xs text-white/40">
                 <span className="flex items-center gap-1">

@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
+import { asset } from '@/lib/utils';
 
 export function HeroBanner() {
   return (
     <section className="relative overflow-hidden min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
       <Image
-        src="/images/hero-banner.webp"
+        src={asset('/images/hero-banner.webp')}
         alt="Niepowtarzalna biżuteria Susetti"
         fill
         priority

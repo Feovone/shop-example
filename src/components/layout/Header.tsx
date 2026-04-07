@@ -7,7 +7,7 @@ import { Search, Heart, User, ShoppingBag, Menu, X } from 'lucide-react';
 import { useCartStore } from '@/stores/cart-store';
 import { MegaMenu } from './MegaMenu';
 import { MobileMenu } from './MobileMenu';
-import { formatPrice } from '@/lib/utils';
+import { formatPrice, asset } from '@/lib/utils';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -41,7 +41,7 @@ export function Header() {
 
             <Link href="/" className="flex-shrink-0">
               <Image
-                src="/images/logo.svg"
+                src={asset('/images/logo.svg')}
                 alt="Susetti — sklep z biżuterią"
                 width={160}
                 height={40}

@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/Badge';
 import { StarRating } from '@/components/ui/StarRating';
 import { TrustBadges } from '@/components/home/TrustBadges';
 import { ProductGrid } from '@/components/product/ProductGrid';
-import { formatPrice } from '@/lib/utils';
+import { formatPrice, asset } from '@/lib/utils';
 import { useCartStore } from '@/stores/cart-store';
 import type { Product } from '@/types';
 
@@ -53,7 +53,7 @@ export function ProductPageClient({ product }: ProductPageClientProps) {
 
   const images = product.images.length > 0
     ? product.images
-    : [{ id: '0', url: '/images/placeholder-product.jpg', alt: product.name, position: 0, isMain: true }];
+    : [{ id: '0', url: asset('/images/products/new/2-pierscionek-lisc.webp'), alt: product.name, position: 0, isMain: true }];
 
   const avgRating = product.reviews.length > 0
     ? product.reviews.reduce((sum, r) => sum + r.rating, 0) / product.reviews.length

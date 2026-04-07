@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { mainNavigation } from '@/config/navigation';
+import { asset } from '@/lib/utils';
 import type { NavigationItem } from '@/types';
 
 interface PopularItem {
@@ -131,7 +132,7 @@ function SubContent({ items, activeSubMenu, parentHref }: { items: NavigationIte
             >
               <div className="relative w-full aspect-square bg-bg-secondary rounded-sm mb-2 overflow-hidden">
                 <Image
-                  src={item.image}
+                  src={asset(item.image)}
                   alt={item.label}
                   fill
                   sizes="150px"

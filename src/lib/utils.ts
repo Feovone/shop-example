@@ -31,6 +31,13 @@ export function truncate(text: string, maxLength: number): string {
   return text.slice(0, maxLength).trimEnd() + '...';
 }
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
+export function asset(path: string): string {
+  if (path.startsWith('http')) return path;
+  return `${BASE_PATH}${path}`;
+}
+
 export function getImageUrl(path: string, width?: number, height?: number): string {
   if (path.startsWith('http')) return path;
   const params = width && height ? `?w=${width}&h=${height}` : '';
