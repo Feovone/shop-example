@@ -81,15 +81,20 @@ export function CategoryPageClient({ slug, searchParams }: CategoryPageClientPro
         </div>
 
         <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between mb-6">
-            <button
-              onClick={() => setMobileFiltersOpen(true)}
-              className="md:hidden flex items-center gap-2 text-sm font-medium"
-            >
-              <Filter className="w-4 h-4" />
-              Filtry
-            </button>
-            <SortDropdown value={sort} onChange={setSort} totalProducts={products.length} />
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setMobileFiltersOpen(true)}
+                className="md:hidden flex items-center gap-2 text-sm font-medium border border-border rounded h-9 px-3"
+              >
+                <Filter className="w-4 h-4" />
+                Filtry
+              </button>
+              <p className="text-sm text-text-muted">
+                {products.length} {products.length === 1 ? 'produkt' : 'produktów'}
+              </p>
+            </div>
+            <SortDropdown value={sort} onChange={setSort} />
           </div>
 
           <ProductGrid products={products} />

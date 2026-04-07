@@ -29,7 +29,7 @@ export function MobileMenu({ onClose }: MobileMenuProps) {
   const canGoBack = stack.length > 1;
 
   return (
-    <div className="fixed inset-0 top-16 z-40 bg-white overflow-y-auto md:hidden">
+    <div className="absolute left-0 right-0 top-full bottom-0 h-[calc(100vh-100%)] z-40 bg-white overflow-y-auto md:hidden">
       <div className="p-4">
         {canGoBack && (
           <button

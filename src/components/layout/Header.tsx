@@ -43,8 +43,9 @@ export function Header() {
               <Image
                 src={asset('/images/logo.svg')}
                 alt="Susetti — sklep z biżuterią"
-                width={160}
-                height={40}
+                width={120}
+                height={30}
+                className="w-[100px] h-auto md:w-[160px]"
                 priority
               />
             </Link>
