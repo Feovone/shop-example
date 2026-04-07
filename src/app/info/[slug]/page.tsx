@@ -5,6 +5,14 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export async function generateStaticParams() {
+  return [
+    'o-firmie', 'kontakt', 'faq', 'regulamin', 'polityka-prywatnosci',
+    'jak-kupowac', 'koszty-wysylki', 'czas-realizacji-zamowienia',
+    'zwroty', 'formy-platnosci', 'reklamacje',
+  ].map((slug) => ({ slug }));
+}
+
 const infoPages: Record<string, { title: string; content: string }> = {
   'o-firmie': {
     title: 'O firmie',

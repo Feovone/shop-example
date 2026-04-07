@@ -6,6 +6,10 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export async function generateStaticParams() {
+  return mockAllProducts.map((p) => ({ slug: p.slug }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = mockAllProducts.find((p) => p.slug === slug) ?? mockDetailProduct;

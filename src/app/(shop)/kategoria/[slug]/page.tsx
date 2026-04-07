@@ -1,9 +1,18 @@
 import type { Metadata } from 'next';
 import { CategoryPageClient } from './CategoryPageClient';
 
+const defaultSlugs = [
+  'bizuteria-zlota', 'bizuteria-srebrna', 'motywy', 'dewocjonalia',
+  'komplety-srebrne', 'kolczyki-srebrne', 'wisiorki-srebrne',
+  'bransoletki-srebrne', 'pierscionki-srebrne', 'naszyjniki-srebrne',
+];
+
+export async function generateStaticParams() {
+  return defaultSlugs.map((slug) => ({ slug }));
+}
+
 type Props = {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -19,9 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function CategoryPage({ params, searchParams }: Props) {
+export default async function CategoryPage({ params }: Props) {
   const { slug } = await params;
-  const resolvedSearchParams = await searchParams;
 
-  return <CategoryPageClient slug={slug} searchParams={resolvedSearchParams} />;
+  return <CategoryPageClient slug={slug} searchParams={{}} />;
 }

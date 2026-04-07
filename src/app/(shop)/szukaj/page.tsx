@@ -1,27 +1,15 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { ProductGrid } from '@/components/product/ProductGrid';
-import { Pagination } from '@/components/ui/Pagination';
 import { mockNewProducts } from '@/lib/mock-data';
 
-type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-};
+function SearchContent() {
+  const searchParams = useSearchParams();
+  const query = searchParams.get('q') ?? '';
 
-export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-  const resolved = await searchParams;
-  const query = typeof resolved.q === 'string' ? resolved.q : '';
-  return {
-    title: query ? `Wyniki wyszukiwania: ${query}` : 'Wyszukiwanie',
-  };
-}
-
-export default async function SearchPage({ searchParams }: Props) {
-  const resolved = await searchParams;
-  const query = typeof resolved.q === 'string' ? resolved.q : '';
-  const page = Number(resolved.page) || 1;
-
-  // TODO: real search API
   const results = query ? mockNewProducts : [];
 
   return (
@@ -39,10 +27,7 @@ export default async function SearchPage({ searchParams }: Props) {
       )}
 
       {results.length > 0 ? (
-        <>
-          <ProductGrid products={results} />
-          <Pagination currentPage={page} totalPages={1} baseUrl="/szukaj" searchParams={{ q: query }} />
-        </>
+        <ProductGrid products={results} />
       ) : query ? (
         <div className="py-16 text-center">
           <p className="text-text-muted">Nie znaleziono produktów dla frazy &quot;{query}&quot;</p>
@@ -50,5 +35,13 @@ export default async function SearchPage({ searchParams }: Props) {
         </div>
       ) : null}
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense>
+      <SearchContent />
+    </Suspense>
   );
 }

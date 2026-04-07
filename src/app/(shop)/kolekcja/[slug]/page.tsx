@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { ProductGrid } from '@/components/product/ProductGrid';
-import { Pagination } from '@/components/ui/Pagination';
 import { mockNewProducts, mockCollections } from '@/lib/mock-data';
 
 type Props = {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
+
+export async function generateStaticParams() {
+  return mockCollections.map((c) => ({ slug: c.slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -18,10 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function CollectionPage({ params, searchParams }: Props) {
+export default async function CollectionPage({ params }: Props) {
   const { slug } = await params;
-  const resolvedSearchParams = await searchParams;
-  const page = Number(resolvedSearchParams.page) || 1;
   const collection = mockCollections.find((c) => c.slug === slug) ?? mockCollections[0];
 
   return (
@@ -39,7 +39,6 @@ export default async function CollectionPage({ params, searchParams }: Props) {
       </div>
 
       <ProductGrid products={mockNewProducts} />
-      <Pagination currentPage={page} totalPages={4} baseUrl={`/kolekcja/${slug}`} />
     </div>
   );
 }
